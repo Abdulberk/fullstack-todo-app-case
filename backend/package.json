@@ -6,7 +6,9 @@
   "scripts": {
     "test": "mocha --require ts-node/register src/test/todoControllers.test.ts --timeout 2000",
     "start": "node dist/server.js",
-    "dev": "npx nodemon src/server.ts"
+    "dev": "npx nodemon src/server.ts",
+    "heroku-postbuild":  "tsc -p ."
+    
   },
   "keywords": [],
   "author": "",

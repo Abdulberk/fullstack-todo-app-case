@@ -12,6 +12,7 @@ import authRoutes from './routes/authRoutes';
 
 
 
+
 const PORT = process.env.PORT || 5000;
 
 app.use(cors());
@@ -23,6 +24,18 @@ connectDB()
 
     app.use('/', todoRoutes);
     app.use('/', authRoutes);
+
+    if (process.env.NODE_ENV === 'production') {
+     app.use( express.static(path.join(__dirname, '../../frontend/build')));
+     app.get( '*', (req: any, res: any) => {
+        res.sendFile(path.resolve(__dirname, '../../frontend/build', 'index.html'));
+      });
+    }
+
+    
+
+
+
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
     });
